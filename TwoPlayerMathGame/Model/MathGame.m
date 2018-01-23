@@ -27,6 +27,7 @@
         _player2 = [[Player alloc] init];
         _currentPlayerString = @"Player 1";
         _currentPlayer = _player1;
+        _resultString = @"";
         
         NSLog(@"answer is : %ld", _answer);
     }
@@ -63,14 +64,15 @@
 {
     if (self.answer == answer) {
         self.currentPlayer.score += 1;
-        NSLog(@"score: %ld",self.currentPlayer.score);
+        NSLog(@"%@ score: %ld",self.currentPlayerString, self.currentPlayer.score);
     } else {
         self.currentPlayer.lives -= 1;
     }
     
     if (self.currentPlayer.lives == 0)
     {
-        NSLog(@"quit app");
+        [self changeCurrentPlayer];
+        self.resultString = [NSString stringWithFormat:@"%@ wins with score: %ld", self.currentPlayerString, self.currentPlayer.score];
         return YES;
     } else {
         [self changeCurrentPlayer];

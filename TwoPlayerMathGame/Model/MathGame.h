@@ -14,6 +14,7 @@
 @property (nonatomic, strong) Player *player1;
 @property (nonatomic, strong) Player *player2;
 @property (nonatomic, copy) NSString *currentPlayerString;
+@property (nonatomic, copy) NSString *resultString;
 
 - (NSString *)startGame;
 - (BOOL)checkAnswer:(NSInteger)answer;

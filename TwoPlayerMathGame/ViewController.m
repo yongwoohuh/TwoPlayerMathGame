@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *answer;
 @property (weak, nonatomic) IBOutlet UILabel *p1_score;
 @property (weak, nonatomic) IBOutlet UILabel *p2_score;
+@property (weak, nonatomic) IBOutlet UILabel *delete;
 @property (nonatomic, strong) MathGame *mathgame;
 @end
 
@@ -74,10 +75,30 @@
 {
     self.answer.text = [self.answer.text stringByAppendingString:@"0"];
 }
+
+- (IBAction)clear:(UIButton *)sender
+{
+    self.answer.text = @"";
+}
+
+
 - (IBAction)enter:(UIButton *)sender
 {
-    [self.mathgame checkAnswer:[self.answer.text integerValue]];
-    [self updateView];
+    if ([self.mathgame checkAnswer:[self.answer.text integerValue]] == YES) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Game over"
+                                                                                 message:self.mathgame.resultString
+                                                                          preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* okay = [UIAlertAction actionWithTitle:@"Restart Game" style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * action) {
+                                                         [self viewDidLoad];
+                                                     }];
+        [alertController addAction:okay];
+        [self presentViewController:alertController animated:NO completion:nil];
+    } else {
+        [self updateView];
+    }
+    
 }
 - (void)updateView
 {
