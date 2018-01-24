@@ -91,7 +91,11 @@
         
         UIAlertAction* okay = [UIAlertAction actionWithTitle:@"Restart Game" style:UIAlertActionStyleDefault
                                                      handler:^(UIAlertAction * action) {
-                                                         [self viewDidLoad];
+                                                         self.p1_score.text = @"0";
+                                                         self.p2_score.text = @"0";
+                                                         self.answer.text = @"";
+                                                         self.mathgame = [[MathGame alloc] init];
+                                                         
                                                      }];
         [alertController addAction:okay];
         [self presentViewController:alertController animated:NO completion:nil];

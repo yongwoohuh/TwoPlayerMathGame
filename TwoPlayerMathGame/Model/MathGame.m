@@ -28,7 +28,7 @@
         _currentPlayerString = @"Player 1";
         _currentPlayer = _player1;
         _resultString = @"";
-        
+        NSLog(@"Start new game");
         NSLog(@"answer is : %ld", _answer);
     }
     return self;
